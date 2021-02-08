@@ -1,0 +1,13 @@
+[
+    {
+        "model": "levelupapi.game",
+        "pk": 1,
+        "fields": {
+            "gamer": 1,
+            "gametype": 1,
+            "title": "Code Names Pictures",
+            "description": "What are these strange symbols on the map? They are code for locations where spies must contact secret agents!",
+            "number_of_players": 8
+        }
+    }
+]
