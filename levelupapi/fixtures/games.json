@@ -9,5 +9,27 @@
             "description": "What are these strange symbols on the map? They are code for locations where spies must contact secret agents!",
             "number_of_players": 8
         }
+    },
+    {
+        "model": "levelupapi.game",
+        "pk": 2,
+        "fields": {
+            "gamer": 1,
+            "gametype": 1,
+            "title": "Candy Land",
+            "description": "Classic kids game that makes you want to eat candy.",
+            "number_of_players": 2
+        }
+    },
+    {
+        "model": "levelupapi.game",
+        "pk": 3,
+        "fields": {
+            "gamer": 1,
+            "gametype": 1,
+            "title": "Chutes and Ladders",
+            "description": "I've never understood what this game is about.",
+            "number_of_players": 4
+        }
     }
 ]
