@@ -5,7 +5,27 @@
         "fields": {
             "scheduler": 1,
             "game": 1,
-            "event_time": "2021-02-11",
+            "event_time": "2021-02-11 17:30:00",
+            "location": "My house!"
+        }
+    },
+    {
+        "model": "levelupapi.event",
+        "pk": 2,
+        "fields": {
+            "scheduler": 1,
+            "game": 2,
+            "event_time": "2021-02-13 18:30:00",
+            "location": "My house!"
+        }
+    },
+    {
+        "model": "levelupapi.event",
+        "pk": 3,
+        "fields": {
+            "scheduler": 1,
+            "game": 3,
+            "event_time": "2021-02-14 19:00:00",
             "location": "My house!"
         }
     }
