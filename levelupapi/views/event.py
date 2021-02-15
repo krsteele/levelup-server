@@ -55,7 +55,7 @@ class Events(ViewSet):
         Returns:
             Response -- Empty body with 204 status code
         """
-        scheduler = Gamer.objects.get(user=request.auth.user)
+        gamer = Gamer.objects.get(user=request.auth.user)
 
         event = Event.objects.get(pk=pk)
         event.location = request.data["location"]
