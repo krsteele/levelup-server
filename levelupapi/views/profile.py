@@ -4,7 +4,7 @@ from rest_framework.decorators import action
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
-from levelupapi.models import Event, Gamer
+from levelupapi.models import Event, Gamer, Game
 
 
 class Profile(ViewSet):
@@ -17,7 +17,7 @@ class Profile(ViewSet):
             Response -- JSON representation of user info and events
         """
         gamer = Gamer.objects.get(user=request.auth.user)
-        events = Event.objects.filter(registrations__gamer=gamer)
+        events = Event.objects.filter(scheduler=gamer)
 
         events = EventSerializer(
             events, many=True, context={'request': request})
@@ -30,3 +30,35 @@ class Profile(ViewSet):
         profile["events"] = events.data
 
         return Response(profile)
+
+
+class UserSerializer(serializers.ModelSerializer):
+    """JSON serializer for gamer's related Django user"""
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'username')
+
+
+class GamerSerializer(serializers.ModelSerializer):
+    """JSON serializer for gamers"""
+    user = UserSerializer(many=False)
+
+    class Meta:
+        model = Gamer
+        fields = ('user', 'bio')
+
+
+class GameSerializer(serializers.ModelSerializer):
+    """JSON serializer for games"""
+    class Meta:
+        model = Game
+        fields = ('title',)
+
+
+class EventSerializer(serializers.ModelSerializer):
+    """JSON serializer for events"""
+    game = GameSerializer(many=False)
+
+    class Meta:
+        model = Event
+        fields = ('id', 'game', 'location', 'event_time')
