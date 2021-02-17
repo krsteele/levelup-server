@@ -1,0 +1,32 @@
+from django.contrib.auth.models import User
+from rest_framework import status
+from rest_framework.decorators import action
+from rest_framework.viewsets import ViewSet
+from rest_framework.response import Response
+from rest_framework import serializers
+from levelupapi.models import Event, Gamer
+
+
+class Profile(ViewSet):
+    """Gamer can see profile information"""
+
+    def list(self, request):
+        """Handle GET requests to profile resource
+
+        Returns:
+            Response -- JSON representation of user info and events
+        """
+        gamer = Gamer.objects.get(user=request.auth.user)
+        events = Event.objects.filter(registrations__gamer=gamer)
+
+        events = EventSerializer(
+            events, many=True, context={'request': request})
+        gamer = GamerSerializer(
+            gamer, many=False, context={'request': request})
+
+        # Manually construct the JSON structure you want in the response
+        profile = {}
+        profile["gamer"] = gamer.data
+        profile["events"] = events.data
+
+        return Response(profile)
