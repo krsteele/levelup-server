@@ -1,4 +1,3 @@
-from levelupapi.models import gamer
 from django.db import models
 
 class EventGamer(models.Model):
