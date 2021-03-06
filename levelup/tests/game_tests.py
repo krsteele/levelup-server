@@ -14,8 +14,6 @@ class GameTests(APITestCase):
             "username": "steve",
             "password": "Admin8*",
             "email": "steve@stevebrownlee.com",
-            "address": "100 Infinity Way",
-            "phone_number": "555-1212",
             "first_name": "Steve",
             "last_name": "Brownlee",
             "bio": "Love those gamez!!"
@@ -48,10 +46,9 @@ class GameTests(APITestCase):
         url = "/games"
         data = {
             "gameTypeId": 1,
-            "skillLevel": 5,
+            "description": "Game of mystery",
             "title": "Clue",
-            "maker": "Milton Bradley",
-            "numberOfPlayers": 6,
+            "numberOfPlayers": 6
         }
 
         # Make sure request is authenticated
@@ -68,6 +65,5 @@ class GameTests(APITestCase):
 
         # Assert that the properties on the created resource are correct
         self.assertEqual(json_response["title"], "Clue")
-        self.assertEqual(json_response["maker"], "Milton Bradley")
-        self.assertEqual(json_response["skill_level"], 5)
+        self.assertEqual(json_response["description"], "Game of mystery")
         self.assertEqual(json_response["number_of_players"], 6)
