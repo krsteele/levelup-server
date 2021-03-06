@@ -61,7 +61,7 @@ class GameTests(APITestCase):
         json_response = json.loads(response.content)
 
         # Assert that the game was created
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         # Assert that the properties on the created resource are correct
         self.assertEqual(json_response["title"], "Clue")
