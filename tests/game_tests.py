@@ -28,7 +28,7 @@ class GameTests(APITestCase):
         self.token = json_response["token"]
 
         # Assert that a user was created
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         # SEED DATABASE WITH ONE GAME TYPE
         # This is needed because the API does not expose a /gametypes
